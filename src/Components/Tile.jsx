@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { MIN_PLAYER, MAX_PLAYER } from "../Engine.js";
+import { MIN_PLAYER, MAX_PLAYER, checkScore, getBestMove, checkIfTilesLeft, BLANK } from "../Engine.js";
 
 class Tile extends Component {
     constructor(props) {
@@ -7,12 +7,11 @@ class Tile extends Component {
 
         this.state = {
             isDisabled: false,
-            
+
         }
 
-        this.playerChar =  "-"
+        this.playerChar = "-"
         this.handleClick = this.handleClick.bind(this);
-        this.getPlayerChar = this.getPlayerChar.bind(this);
     }
 
     render() {
@@ -28,17 +27,45 @@ class Tile extends Component {
     }
 
     handleClick() {
-        const { index, board, tiles, parent} = this.props;
+        const { index, board, tiles, parent } = this.props;
 
         var row = Math.floor(index / 3);
         var col = Math.floor(index % 3);
 
+        if (board[row][col] !== BLANK) {
+            alert("You can't place one there!")
+            return;
+        }
+
         board[row][col] = MIN_PLAYER;
-        console.log(parent);
-        this.setState({ isDisabled: true});
+        this.setState({ isDisabled: true });
         this.playerChar = MIN_PLAYER;
 
-        console.log(tiles);
+        var bestMove = getBestMove(board);
+        console.log(bestMove);
+        var score = 0;
+        if (bestMove.row !== null) {
+            board[bestMove.row][bestMove.col] = MAX_PLAYER;
+
+            score = checkScore(board);
+        }
+        switch (score) {
+            case 10:
+                alert(MAX_PLAYER + " wins!");
+                break;
+            case -10:
+                alert("You win!");
+                break;
+            case 0:
+                console.log(board);
+                if (!checkIfTilesLeft(board))
+                    alert("It's a tie.");
+                break;
+            default:
+
+        }
+
+        console.table(board);
     }
 }
 

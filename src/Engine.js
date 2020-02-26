@@ -4,7 +4,7 @@ export const MAX_PLAYER = 'X';
 export const MIN_PLAYER = 'O';
 export const BLANK = '-';
 
-export function isTie(board) {
+export function checkIfTilesLeft(board) {
     for (var row = 0; row < NUMBER_OF_ROWS; ++row) {
         for (var col = 0; col < NUMBER_OF_COLS; ++col) {
             if (board[row][col] === BLANK) {
@@ -105,6 +105,7 @@ export function getBestMove(board) {
 
                 var move = minimax(board, 0, false);
                 console.log(move);
+
                 //Make it blank after calculation
                 board[row][col] = BLANK;
 
@@ -129,7 +130,7 @@ export function minimax(board, depth, isMax) {
     }
 
     //Check if it is a tie. If it is then return 0 to indicate that they haven't.
-    if (isTie(board)) {
+    if (!checkIfTilesLeft(board)) {
         return 0;
     }
 
@@ -140,9 +141,14 @@ export function minimax(board, depth, isMax) {
         //Go thtough the entire board. And calculate the the best move.
         for (var row = 0; row < NUMBER_OF_ROWS; ++row) {
             for (var col = 0; col < NUMBER_OF_COLS; ++col) {
-                var value = minimax(board, depth + 1, !isMax);
-                bestValue = Math.max(bestValue, value);
-                board[row][col] = BLANK;
+                if (board[row][col] === BLANK) {
+                    board[row][col] = MAX_PLAYER;
+
+                    var value = minimax(board, depth + 1, !isMax);
+                    bestValue = Math.max(bestValue, value);
+
+                    board[row][col] = BLANK;
+                }
             }
         }
 
@@ -152,9 +158,13 @@ export function minimax(board, depth, isMax) {
         var bestValue = +Infinity;
         for (var row = 0; row < NUMBER_OF_ROWS; ++row) {
             for (var col = 0; col < NUMBER_OF_COLS; ++col) {
-                var value = minimax(board, depth + 1, !isMax);
-                bestValue = Math.min(bestValue, value);
-                board[row][col] = BLANK;
+                if (board[row][col] === BLANK) {
+                    board[row][col] = MIN_PLAYER;
+
+                    var value = minimax(board, depth + 1, !isMax);
+                    bestValue = Math.min(bestValue, value);
+                    board[row][col] = BLANK;
+                }
             }
         }
         return bestValue;

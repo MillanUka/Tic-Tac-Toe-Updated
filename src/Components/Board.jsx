@@ -13,17 +13,23 @@ class Board extends Component {
     }
 
     render() {
-        var index = -1;
         return (
             <div>
-                {this.board.map((row) => {
-                    return row.map((col) => {
-                        ++index;
-                        var tile = <Tile key={index} index={index} board={this.board} tiles={this.tiles} parent={this} />
-                        this.tiles.push(tile);
-                        return tile;
-                    })
-                })}
+                <div>
+                <Tile index={0} playerChar={this.board[0][0]} board={this.board} }/>
+                <Tile index={1} playerChar={this.board[0][1]} board={this.board} />
+                <Tile index={2} playerChar={this.board[0][2]} board={this.board} />
+                </div>
+                <div>
+                <Tile index={3} playerChar={this.board[1][0]} board={this.board} />
+                <Tile index={4} playerChar={this.board[1][1]} board={this.board} />
+                <Tile index={5} playerChar={this.board[1][2]} board={this.board} />
+                </div>
+                <div>
+                <Tile index={6} playerChar={this.board[2][0]} board={this.board} />
+                <Tile index={7} playerChar={this.board[2][1]} board={this.board} />
+                <Tile index={8} playerChar={this.board[2][2]} board={this.board} />
+                </div>
             </div>
         );
     }
