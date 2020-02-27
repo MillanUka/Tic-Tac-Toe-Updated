@@ -10,14 +10,14 @@ class Tile extends Component {
 
         }
 
-        this.playerChar = "-"
         this.handleClick = this.handleClick.bind(this);
     }
 
     render() {
+        const { playerChar } = this.props;
         return (
             <button id={this.index} onClick={this.handleClick} disabled={this.state.isDisabled}>
-                {this.playerChar}
+                {playerChar}
             </button>
         )
     }
@@ -27,7 +27,7 @@ class Tile extends Component {
     }
 
     handleClick() {
-        const { index, board, tiles, parent } = this.props;
+        const { index, board, parent, playerChar } = this.props;
 
         var row = Math.floor(index / 3);
         var col = Math.floor(index % 3);
@@ -49,6 +49,8 @@ class Tile extends Component {
 
             score = checkScore(board);
         }
+
+        parent.setState({ board: board });
         switch (score) {
             case 10:
                 alert(MAX_PLAYER + " wins!");
@@ -61,8 +63,6 @@ class Tile extends Component {
                 if (!checkIfTilesLeft(board))
                     alert("It's a tie.");
                 break;
-            default:
-
         }
 
         console.table(board);

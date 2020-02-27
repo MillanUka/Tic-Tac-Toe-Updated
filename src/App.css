@@ -5,3 +5,8 @@ button {
     color: white;
     font-size: 180px;
 }
+
+#restart {
+    width: 200px;
+    height: 100px;
+}

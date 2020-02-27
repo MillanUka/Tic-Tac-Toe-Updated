@@ -1,12 +1,13 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Board from './Components/Board';
-import {createBoard} from './Engine';
+import { createBoard, clearBoard } from './Engine';
 function App() {
   var board = createBoard();
   return (
-      <Board board={board}/>
+    <React.Fragment>
+      <Board board={board} />
+    </React.Fragment>
   );
 }
 
