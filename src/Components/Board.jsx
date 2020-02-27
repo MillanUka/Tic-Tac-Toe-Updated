@@ -17,17 +17,17 @@ class Board extends Component {
         console.log(this.state.board);
         return (
             <div>
-                <div>
+                <div className={"row"}>
                 <Tile index={0} playerChar={this.state.board[0][0]} board={this.state.board} parent={this}/>
                 <Tile index={1} playerChar={this.state.board[0][1]} board={this.state.board} parent={this}/>
                 <Tile index={2} playerChar={this.state.board[0][2]} board={this.state.board} parent={this}/>
                 </div>
-                <div>
+                <div className={"row"}>
                 <Tile index={3} playerChar={this.state.board[1][0]} board={this.state.board} parent={this}/>
                 <Tile index={4} playerChar={this.state.board[1][1]} board={this.state.board} parent={this}/>
                 <Tile index={5} playerChar={this.state.board[1][2]} board={this.state.board} parent={this}/>
                 </div>
-                <div>
+                <div className={"row"}>
                 <Tile index={6} playerChar={this.state.board[2][0]} board={this.state.board} parent={this}/>
                 <Tile index={7} playerChar={this.state.board[2][1]} board={this.state.board} parent={this}/>
                 <Tile index={8} playerChar={this.state.board[2][2]} board={this.state.board} parent={this}/>

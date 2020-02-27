@@ -5,9 +5,10 @@ import { createBoard, clearBoard } from './Engine';
 function App() {
   var board = createBoard();
   return (
-    <React.Fragment className={"content"}>
-      <Board board={board} />
-      <footer>Made my <a href={"https://github.com/MillanUka"}>Millan Uka</a></footer>
+    <React.Fragment >
+      <br />
+      <Board board={board} className={"content"}/>
+      <footer>Made my <a href={"https://github.com/MillanUka"}>Millan Uka</a>. <a href={"https://github.com/MillanUka/Tic-Tac-Toe-Updated/blob/master/LICENSE"}>MIT License</a></footer>
     </React.Fragment>
   );
 }
