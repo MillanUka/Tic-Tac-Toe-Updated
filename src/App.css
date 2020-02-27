@@ -1,12 +1,33 @@
+body {
+    background-color: #7B506F;
+}
+
 button {
     width: 33%;
     height: 33%;
-    background-color: blue;
-    color: white;
+    background-color: #1F1A38;
+    color: #DD99BB;
     font-size: 180px;
 }
 
-#restart {
-    width: 200px;
-    height: 100px;
+.content {
+    text-align: center;
+}
+
+footer {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #7B506F;
+    color: white;
+    text-align: center;
+}
+
+a {
+    color: #EAD7D1;
+}
+
+a:hover {
+    color: #1F1A38;
+    font-size: 105%;
 }
