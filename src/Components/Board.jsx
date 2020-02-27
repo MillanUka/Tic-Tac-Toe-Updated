@@ -16,7 +16,7 @@ class Board extends Component {
         return (
             <div>
                 <div>
-                <Tile index={0} playerChar={this.board[0][0]} board={this.board} }/>
+                <Tile index={0} playerChar={this.board[0][0]} board={this.board} />
                 <Tile index={1} playerChar={this.board[0][1]} board={this.board} />
                 <Tile index={2} playerChar={this.board[0][2]} board={this.board} />
                 </div>
@@ -33,13 +33,6 @@ class Board extends Component {
             </div>
         );
     }
-
-    getPlayerOfTile(index) {
-        var row = Math.floor(index / 3);
-        var col = Math.floor(index % 3);
-        return this.board[row][col];
-    }
-
 }
 
 export default Board;
