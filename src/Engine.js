@@ -22,7 +22,6 @@ export function checkScore(board) {
         for (var col = 0; col < NUMBER_OF_COLS; ++col) {
             if (board[row][0] === board[row][1] &&
                 board[row][1] === board[row][2]) {
-                //console.table(board);
                 if (board[row][0] === MAX_PLAYER) {
                     return 10;
                 } else if (board[row][0] === MIN_PLAYER) {
@@ -37,7 +36,6 @@ export function checkScore(board) {
         for (var col = 0; col < NUMBER_OF_COLS; ++col) {
             if (board[0][col] === board[1][col] &&
                 board[1][col] === board[2][col]) {
-                //console.table(board);
                 if (board[0][col] === MAX_PLAYER) {
                     return 10;
                 } else if (board[0][col] === MIN_PLAYER) {
@@ -59,7 +57,6 @@ export function checkScore(board) {
             var leftDiagonal = (board[0][0] === board[1][1] && board[1][1] === board[2][2]);
 
             if (leftDiagonal) {
-                //console.table(board);
                 if (board[0][0] === MAX_PLAYER) {
                     return 10;
                 } else if (board[0][0] === MIN_PLAYER) {
@@ -73,7 +70,6 @@ export function checkScore(board) {
         for (var col = 0; col < NUMBER_OF_COLS; ++col) {
             var rightDiagonal = (board[2][0] === board[1][1] && board[1][1] === board[0][2]);
             if (rightDiagonal) {
-                //console.table(board);
                 if (board[2][0] === MAX_PLAYER) {
                     return 10;
                 } else if (board[2][0] === MIN_PLAYER) {
@@ -104,7 +100,6 @@ export function getBestMove(board) {
                 board[row][col] = MAX_PLAYER;
 
                 var move = minimax(board, 0, false);
-                console.log(move);
 
                 //Make it blank after calculation
                 board[row][col] = BLANK;
@@ -184,4 +179,3 @@ export function createBoard() {
 
     return board;
 }
-

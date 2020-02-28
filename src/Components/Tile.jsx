@@ -27,7 +27,7 @@ class Tile extends Component {
     }
 
     handleClick() {
-        const { index, board, parent, playerChar } = this.props;
+        const { index, board, parent } = this.props;
 
         var row = Math.floor(index / 3);
         var col = Math.floor(index % 3);
@@ -42,7 +42,6 @@ class Tile extends Component {
         this.playerChar = MIN_PLAYER;
 
         var bestMove = getBestMove(board);
-        console.log(bestMove);
         var score = 0;
         if (bestMove.row !== null) {
             board[bestMove.row][bestMove.col] = MAX_PLAYER;
@@ -59,13 +58,11 @@ class Tile extends Component {
                 alert("You win!");
                 break;
             case 0:
-                console.log(board);
                 if (!checkIfTilesLeft(board))
                     alert("It's a tie.");
                 break;
+            default:
         }
-
-        console.table(board);
     }
 }
 
