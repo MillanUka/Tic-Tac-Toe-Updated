@@ -1,13 +1,11 @@
 import React, { Component } from "react";
-import { MIN_PLAYER, MAX_PLAYER, checkScore, getBestMove, checkIfTilesLeft, BLANK } from "../Engine.js";
+import { MIN_PLAYER, MAX_PLAYER, checkScore, getBestMove, checkIfTilesLeft, BLANK, clearBoard } from "../Engine.js";
 
 class Tile extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            isDisabled: false,
-
         }
 
         this.handleClick = this.handleClick.bind(this);
@@ -16,7 +14,7 @@ class Tile extends Component {
     render() {
         const { playerChar } = this.props;
         return (
-            <button id={this.index} onClick={this.handleClick} disabled={this.state.isDisabled}>
+            <button id={this.index} onClick={this.handleClick}>
                 {playerChar}
             </button>
         )
@@ -26,7 +24,7 @@ class Tile extends Component {
         return this.playerChar;
     }
 
-    handleClick() {
+    async handleClick() {
         const { index, board, parent } = this.props;
 
         var row = Math.floor(index / 3);
@@ -38,7 +36,7 @@ class Tile extends Component {
         }
 
         board[row][col] = MIN_PLAYER;
-        this.setState({ isDisabled: true });
+        this.setState({});
         this.playerChar = MIN_PLAYER;
 
         var bestMove = getBestMove(board);
@@ -53,9 +51,15 @@ class Tile extends Component {
         switch (score) {
             case 10:
                 alert(MAX_PLAYER + " wins!");
+                await this.delay(750);
+                clearBoard(board);
+                parent.setState({ board: board });
                 break;
             case -10:
                 alert("You win!");
+                await this.delay(750);
+                clearBoard(board);
+                parent.setState({ board: board });
                 break;
             case 0:
                 if (!checkIfTilesLeft(board))
@@ -64,6 +68,7 @@ class Tile extends Component {
             default:
         }
     }
-}
 
+    delay = ms => new Promise(res => setTimeout(res, ms));
+}
 export default Tile;

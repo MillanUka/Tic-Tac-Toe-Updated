@@ -179,3 +179,11 @@ export function createBoard() {
 
     return board;
 }
+
+export function clearBoard(board) {
+    for (var row = 0; row < NUMBER_OF_ROWS; ++row) {
+        for (var col = 0; col < NUMBER_OF_COLS; ++col) {
+            board[row][col] = BLANK;
+        }
+    }
+}
