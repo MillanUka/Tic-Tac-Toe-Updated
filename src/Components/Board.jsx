@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Tile from "./Tile";
 import {clearBoard} from "../Engine.js";
-import { thisExpression } from "@babel/types";
 class Board extends Component {
     constructor(props) {
         super(props);
