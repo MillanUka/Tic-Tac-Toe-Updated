@@ -2,7 +2,7 @@ export const NUMBER_OF_ROWS = 3;
 export const NUMBER_OF_COLS = 3;
 export const MAX_PLAYER = 'X';
 export const MIN_PLAYER = 'O';
-export const BLANK = ' ';
+export const BLANK = '-';
 
 export function checkIfTilesLeft(board) {
     for (var row = 0; row < NUMBER_OF_ROWS; ++row) {
